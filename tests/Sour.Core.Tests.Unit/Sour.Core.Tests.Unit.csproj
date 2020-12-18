@@ -1,0 +1,48 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Examples\Background.feature" />
+    <None Remove="Examples\ScenarioOutline.feature" />
+    <None Remove="Examples\SingleScenarioWithTable.feature" />
+    <None Remove="Expectations\Background.md" />
+    <None Remove="Expectations\ScenarioOutline.md" />
+    <None Remove="Expectations\SingleScenario.md" />
+    <None Remove="Expectations\SingleScenarioWithTable.md" />
+    <None Remove="SingleScenario.feature" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Examples\ScenarioOutline.feature" />
+    <EmbeddedResource Include="Examples\Background.feature" />
+    <EmbeddedResource Include="Examples\SingleScenarioWithTable.feature" />
+    <EmbeddedResource Include="Examples\SingleScenario.feature" />
+    <EmbeddedResource Include="Expectations\Background.md" />
+    <EmbeddedResource Include="Expectations\ScenarioOutline.md" />
+    <EmbeddedResource Include="Expectations\SingleScenario.md" />
+    <EmbeddedResource Include="Expectations\SingleScenarioWithTable.md" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentAssertions" Version="5.10.3" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.1" />
+    <PackageReference Include="xunit" Version="2.4.1" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="coverlet.collector" Version="1.3.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Sour.Core\Sour.Core.csproj" />
+  </ItemGroup>
+
+</Project>
