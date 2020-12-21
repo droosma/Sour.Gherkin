@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
-    <version>0.0.2</version>
+    <version>0.0.3</version>
     <PackAsTool>true</PackAsTool>
     <ToolCommandName>sour</ToolCommandName>
     <PackageOutputPath>./nupkg</PackageOutputPath>

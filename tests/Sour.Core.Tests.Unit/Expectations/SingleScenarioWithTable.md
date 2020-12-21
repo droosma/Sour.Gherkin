@@ -10,6 +10,7 @@ buy coffee at all times
 >_Given_ there are 1 coffees left in the machine  
 >_And_ there are users:  
 > | username | password | email               |  
+> | -------- | -------- | ------------------- |  
 > | everzet  | 123456   | everzet@knplabs.com |  
 > | fabpot   | 22@222   | fabpot@symfony.com  |  
 >_And_ I have deposited 1 dollar  

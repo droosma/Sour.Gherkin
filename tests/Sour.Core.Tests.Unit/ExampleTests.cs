@@ -13,11 +13,11 @@ namespace Sour.Core.Tests.Unit
         [InlineData("ScenarioOutline")]
         [InlineData("SingleScenario")]
         [InlineData("SingleScenarioWithTable")]
-        public void Scenario(string scenario)
+        public void Scenario(string scenario, string language = "en")
         {
             var expectedOutput = Resource.ReadResource($"{scenario}.md");
             var stream = Resource.LoadAsStream($"{scenario}.feature");
-            var document = ParseUtils.Parse(stream, "en");
+            var document = ParseUtils.Parse(stream, language);
 
             var markdown = Markdown.From(document);
 
