@@ -6,6 +6,6 @@
       Then I should have <left> cucumbers
 
       Examples:
-        | start | eat | left |
-        |  12   |  5  |  7   |
-        |  20   |  5  |  15  |
+        | start    | eat | left |
+        |  1200000 |  5  |  7   |
+        |  20      |  5  |  15  |

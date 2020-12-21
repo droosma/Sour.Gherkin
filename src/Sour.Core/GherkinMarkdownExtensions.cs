@@ -15,32 +15,54 @@ namespace Sour.Core
         {
             var builder = new StringBuilder();
             builder.AppendLine($">_{step.Keyword.Trim()}_ {step.Text.Replace("<", "[").Replace(">", "]")}  ");
-            
-            if (step.Argument is DataTable dataTable)
+
+            if(step.Argument is DataTable dataTable)
             {
-                dataTable.Rows.Aggregate(builder, (_, row) => builder.AppendLine("> " + row.GenerateRow(ExtractColumnWith(dataTable))));
+                builder.Append(dataTable.AsMarkdown());
+            }
+
+            return builder.ToString();
+        }
+
+        private static string AsMarkdown(this IHasRows dataTable)
+        {
+            var columnWith = ExtractColumnWith(dataTable);
+
+            var builder = new StringBuilder();
+            var firstRow = dataTable.Rows.First();
+            builder.AppendLine(AsTableRow(firstRow));
+            builder.AppendLine("> " + firstRow.Cells.GenerateTableSeparator(columnWith));
+            foreach(var row in dataTable.Rows.Skip(1))
+            {
+                builder.AppendLine(AsTableRow(row));
             }
 
             return builder.ToString();
 
-            int[] ExtractColumnWith(IHasRows table)
+            string AsTableRow(TableRow row) => "> " + row.GenerateRow(columnWith);
+        }
+
+        private static string GenerateTableSeparator(this IEnumerable<TableCell> tableCells,
+                                                     IReadOnlyList<int> columnWith)
+            => string.Join(string.Empty, tableCells.Select((cell, index) => $"| {new string('-', columnWith[index])} ")) + "|  ";
+
+        private static int[] ExtractColumnWith(this IHasRows table)
+        {
+            var columnWith = ColumnWith(table.Rows.First());
+            foreach(var row in table.Rows.Skip(1))
             {
-                var columnWith = ColumnWith(table.Rows.First());
-                foreach(var row in table.Rows.Skip(1))
+                var rowWiths = ColumnWith(row);
+
+                for(var i = 0;i < columnWith.Length;i++)
                 {
-                    var rowWiths = ColumnWith(row);
-
-                    for(var i = 0;i < columnWith.Length;i++)
-                    {
-                        columnWith[i] = rowWiths[i] > columnWith[i] ? rowWiths[i] : columnWith[i];
-                    }
+                    columnWith[i] = rowWiths[i] > columnWith[i] ? rowWiths[i] : columnWith[i];
                 }
-
-                return columnWith;
-
-                static int[] ColumnWith(TableRow row) 
-                    => row.Cells.Select(cell => Math.Max(3, cell.Value.Length)).ToArray();
             }
+
+            return columnWith;
+
+            static int[] ColumnWith(TableRow row)
+                => row.Cells.Select(cell => Math.Max(3, cell.Value.Length)).ToArray();
         }
 
         public static string AsMarkdown(this IEnumerable<Examples> examples)
@@ -50,24 +72,6 @@ namespace Sour.Core
             return builder.ToString();
         }
 
-        private static int[] ExtractColumnWith(this Examples examples)
-        {
-            const int minColumnWith = 3;
-            var columnWith = examples.TableHeader
-                                     .Cells
-                                     .Select(cell => Math.Max(minColumnWith, cell.Value.Length))
-                                     .ToArray();
-            examples.TableBody.Aggregate(columnWith, (current, tableRow) => CalculateColumnWithForRow(tableRow, current));
-
-            return columnWith;
-
-            static int CalculateColumnWith(IReadOnlyList<int> current, int index, TableCell cell) 
-                => Math.Max(current[index], cell.Value.Length);
-
-            int[] CalculateColumnWithForRow(TableRow tableRow, IReadOnlyList<int> current) 
-                => tableRow.Cells.Select((cell, index) => CalculateColumnWith(current, index, cell)).ToArray();
-        }
-        
         public static string AsMarkdown(this Examples examples)
         {
             var builder = new StringBuilder();
@@ -85,7 +89,7 @@ namespace Sour.Core
             builder.AppendLine(">");
             return builder.ToString();
 
-            string GenerateSeparationRow() 
+            string GenerateSeparationRow()
                 => string.Join(string.Empty, examples.TableHeader.Cells.Select((cell, index) => $"| {new string('-', columnWith[index])} ")) + "|";
         }
 
@@ -94,7 +98,7 @@ namespace Sour.Core
             var cellArray = row.Cells.ToArray();
 
             var rowBuilder = new StringBuilder();
-            for (var index = 0; index < cellArray.Length; index++)
+            for(var index = 0;index < cellArray.Length;index++)
             {
                 rowBuilder.Append($"| {cellArray[index].Value.PadRight(columnWith[index])} ");
             }
@@ -121,15 +125,13 @@ namespace Sour.Core
             return builder.ToString();
         }
 
-        private static string Cleanup(this string description) 
+        private static string Cleanup(this string description)
             => string.Join($"  {Environment.NewLine}", description.Split(Environment.NewLine).Select(s => s.Trim()));
 
         public static string AsMarkdown(this Background background)
         {
             var builder = new StringBuilder();
-
             background.Steps.Aggregate(builder, (s, step) => builder.Append(AsMarkdown(step)));
-
             return builder.ToString();
         }
 
@@ -164,7 +166,6 @@ namespace Sour.Core
 
             return builder.ToString();
         }
-
 
         private static string AsMarkdownHeader(this string value, int index, bool blockQuote = false)
         {
