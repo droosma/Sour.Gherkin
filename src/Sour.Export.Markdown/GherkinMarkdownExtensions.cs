@@ -29,6 +29,7 @@ namespace Sour.Export.Markdown
             var columnWith = ExtractColumnWith(dataTable);
 
             var builder = new StringBuilder();
+            builder.AppendLine(">");
             var firstRow = dataTable.Rows.First();
             builder.AppendLine(AsTableRow(firstRow));
             builder.AppendLine("> " + firstRow.Cells.GenerateTableSeparator(columnWith));
@@ -36,7 +37,7 @@ namespace Sour.Export.Markdown
             {
                 builder.AppendLine(AsTableRow(row));
             }
-
+            builder.AppendLine(">");
             return builder.ToString();
 
             string AsTableRow(TableRow row) => "> " + row.GenerateRow(columnWith);
