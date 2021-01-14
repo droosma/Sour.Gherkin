@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FuncyDown.Parser" Version="0.0.1" />
     <PackageReference Include="gherkin" Version="6.0.0" />
   </ItemGroup>
 
