@@ -5,9 +5,9 @@ using System.Text;
 
 using Gherkin.Ast;
 
-using Sour.Core.Utilities;
+using Sour.Export.Markdown.Utilities;
 
-namespace Sour.Core
+namespace Sour.Export.Markdown
 {
     internal static class GherkinMarkdownExtensions
     {

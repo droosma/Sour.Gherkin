@@ -5,6 +5,7 @@ using FluentAssertions;
 using Gherkin.Ast;
 
 using Sour.Core.Tests.Unit.Utilities;
+using Sour.Export.Markdown;
 
 using Xunit;
 
