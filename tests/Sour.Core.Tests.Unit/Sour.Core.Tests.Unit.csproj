@@ -43,6 +43,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\Sour.Core\Sour.Core.csproj" />
+    <ProjectReference Include="..\..\src\Sour.Export.Markdown\Sour.Export.Markdown.csproj" />
   </ItemGroup>
 
 </Project>

@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Sour.Core\Sour.Core.csproj" />
+    <ProjectReference Include="..\Sour.Export.Markdown\Sour.Export.Markdown.csproj" />
   </ItemGroup>
 
 </Project>

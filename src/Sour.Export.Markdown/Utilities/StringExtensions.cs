@@ -1,4 +1,4 @@
-﻿namespace Sour.Core.Utilities
+﻿namespace Sour.Export.Markdown.Utilities
 {
     internal static class StringExtensions
     {

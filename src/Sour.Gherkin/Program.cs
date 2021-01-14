@@ -5,6 +5,7 @@ using System.Linq;
 using CommandLine;
 
 using Sour.Core;
+using Sour.Export.Markdown;
 
 namespace Sour.Gherkin
 {
@@ -24,10 +25,12 @@ namespace Sour.Gherkin
                                   if(!Directory.Exists(options.OutputPath))
                                       Directory.CreateDirectory(options.OutputPath);
 
+                                  Core.Export export = new MarkdownExport();
+
                                   var outputPaths = features.Select(feature =>
                                                                     {
                                                                         var document = ParseUtils.Parse(feature, options.Language);
-                                                                        var markdown = Markdown.From(document);
+                                                                        var markdown = export.From(document);
                                                                         var fileName = Path.GetFileNameWithoutExtension(feature);
                                                                         var markdownPath = Path.Combine(options.OutputPath, $"{fileName}.md");
                                                                         File.WriteAllText(markdownPath, markdown);

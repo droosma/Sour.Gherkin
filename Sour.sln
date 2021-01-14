@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{4558A7FF
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sour.Core.Tests.Unit", "tests\Sour.Core.Tests.Unit\Sour.Core.Tests.Unit.csproj", "{71201106-2E0F-4D66-B607-55FF754DD337}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sour.Export.Markdown", "src\Sour.Export.Markdown\Sour.Export.Markdown.csproj", "{1D8E77D3-C64C-4E3D-A8E4-03B6B728E68B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,10 @@ Global
 		{71201106-2E0F-4D66-B607-55FF754DD337}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{71201106-2E0F-4D66-B607-55FF754DD337}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{71201106-2E0F-4D66-B607-55FF754DD337}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D8E77D3-C64C-4E3D-A8E4-03B6B728E68B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D8E77D3-C64C-4E3D-A8E4-03B6B728E68B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D8E77D3-C64C-4E3D-A8E4-03B6B728E68B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D8E77D3-C64C-4E3D-A8E4-03B6B728E68B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
