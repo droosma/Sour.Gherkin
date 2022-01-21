@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net5.0</TargetFramework>
-    <version>0.0.3</version>
+    <TargetFramework>net6.0</TargetFramework>
+    <version>0.0.4</version>
     <PackAsTool>true</PackAsTool>
     <ToolCommandName>sour</ToolCommandName>
     <PackageOutputPath>./nupkg</PackageOutputPath>
